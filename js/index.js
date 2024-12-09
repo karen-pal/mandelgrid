@@ -7,7 +7,7 @@ let batchJobs = {
 	timeDelta: THIRTY_MINS,
 };
 
-Papa.parse("batch-jobs-running.csv", {
+Papa.parse("https://raw.githubusercontent.com/karen-pal/mandelgrid/refs/heads/main/js/batch-jobs-running.csv", {
 	download: true,
 	header: true,
 	complete: (results) => {
