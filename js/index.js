@@ -7,7 +7,7 @@ let batchJobs = {
 	timeDelta: THIRTY_MINS,
 };
 
-Papa.parse("/csv/batch-jobs-running.csv", {
+Papa.parse("batch-jobs-running.csv", {
 	download: true,
 	header: true,
 	complete: (results) => {
