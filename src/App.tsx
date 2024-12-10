@@ -89,11 +89,14 @@ function App() {
 
 	useEffect(() => {
 		setTimeout(() => update(computeData, setComputeData, "alice"), 15_000);
+	}, [computeData]);
+
+	useEffect(() => {
 		setTimeout(
 			() => update(networkData, setNetworkData, "outgoing"),
 			15_000 / 2,
 		);
-	}, [computeData, networkData]);
+	}, [networkData]);
 
 	return (
 		<ul>
