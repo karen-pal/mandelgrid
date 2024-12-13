@@ -1,106 +1,81 @@
-import { useState, useEffect } from "react";
-import Papa from "papaparse";
+// import { useState, useEffect } from "react";
+// import Papa from "papaparse";
+// import Grid from "./assets/image.png";
+import CircleAnimation from "./components/CircleAnimation";
 
-const THIRTY_MINS = 30 * 60_000;
+// const THIRTY_MINS = 30 * 60_000;
 
-type Data<Type> = {
-  [Property in keyof Type]: string;
-};
+// type CernData = {
+//   data: { Time: string; alice: number }[]; // TODO: don't hardcode these too much
+//   lastDatapointIndex: number;
+//   dataDelta: number;
+//   timeDelta: number;
+// };
 
-type ComputeData = {
-  Time: string;
-  alice: string;
-};
+// function update(
+//   cernData: CernData,
+//   setCernData: React.Dispatch<React.SetStateAction<CernData>>
+// ) {
+//   for (let i = cernData.lastDatapointIndex; i < cernData.data.length - 1; i++) {
+//     const previousVal = cernData.data[i - 1]["alice"];
+//     const val = cernData.data[i]["alice"];
+//     const delta = Math.abs(val - previousVal);
 
-type NetworkData = {
-  Time: string;
-  outgoing: string;
-};
+//     if (delta >= cernData.dataDelta) {
+//       console.log("delta:", delta, " at point", i);
+//       setCernData((cd) => ({ ...cd, lastDatapointIndex: i + 1 }));
+//       return;
+//     }
+//   }
+// }
 
-type CernData<Type> = {
-  data: Data<Type>[];
-  lastDatapointIndex: number;
-  dataDelta: number;
-  timeDelta: number;
-};
-
-function update<Type>(
-  cernData: CernData<Type>,
-  setCernData: React.Dispatch<React.SetStateAction<CernData<Type>>>,
-  t: keyof Type
-) {
-  for (let i = cernData.lastDatapointIndex; i < cernData.data.length - 1; i++) {
-    const previousVal = cernData.data[i - 1];
-    const val = cernData.data[i];
-
-    let delta = 0;
-    if (t === "alice") {
-      // Compute
-      delta = Math.abs(Number(val[t]) - Number(previousVal[t]));
-    }
-
-    if (t === "outgoing") {
-      // Network
-      // Example: 450 Mb
-      const prev = previousVal[t].split(" ")[0];
-      const v = val[t].split(" ")[0];
-      delta = Math.abs(Number(v) - Number(prev));
-    }
-
-    if (delta >= cernData.dataDelta) {
-      console.log("delta:", delta, " at point", i);
-      setCernData((cd) => ({ ...cd, lastDatapointIndex: i + 1 }));
-      return;
-    }
-  }
-}
+// function sleep(ms: number) {
+//   return new Promise((resolve) => setTimeout(resolve, ms));
+// }
 
 function App() {
-  const [computeData, setComputeData] = useState<CernData<ComputeData>>({
-    data: [],
-    lastDatapointIndex: 1,
-    dataDelta: 9_000,
-    timeDelta: THIRTY_MINS,
-  });
+  //   const [computeData, setComputeData] = useState<CernData>({
+  //     data: [],
+  //     lastDatapointIndex: 1,
+  //     dataDelta: 9_000,
+  //     timeDelta: THIRTY_MINS,
+  //   });
 
-  const [networkData, setNetworkData] = useState<CernData<NetworkData>>({
-    data: [],
-    lastDatapointIndex: 1,
-    dataDelta: 30,
-    timeDelta: THIRTY_MINS,
-  });
+  //   useEffect(() => {
+  //     Papa.parse(
+  //       "https://raw.githubusercontent.com/karen-pal/mandelgrid/refs/heads/main/js/batch-jobs-running.csv",
+  //       {
+  //         download: true,
+  //         header: true,
+  //         complete: ({ data }) => setComputeData((cd) => ({ ...cd, data })),
+  //       }
+  //     );
+  //   }, []);
 
-  useEffect(() => {
-    Papa.parse("/csv/compute.csv", {
-      download: true,
-      header: true,
-      complete: ({ data }) => setComputeData((cd) => ({ ...cd, data })),
-    });
-    Papa.parse("/csv/network.csv", {
-      download: true,
-      header: true,
-      complete: ({ data }) => setNetworkData((nd) => ({ ...nd, data })),
-    });
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => update(computeData, setComputeData, "alice"), 15_000);
-  }, [computeData]);
-
-  useEffect(() => {
-    setTimeout(
-      () => update(networkData, setNetworkData, "outgoing"),
-      15_000 / 2
-    );
-  }, [networkData]);
-  console.log("aaaaaaaaaaaaaaa");
+  //   useEffect(() => {
+  //     setTimeout(() => update(computeData, setComputeData), 2_000);
+  //   }, [computeData]);
 
   return (
-    <ul>
-      {computeData.data.map((d) => (
-        <li>{d["alice"]}</li>
-      ))}
-    </ul>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100vw",
+        height: "100vh",
+      }}
+    >
+      {/* <CircleAnimation color="#ff9706" time={2000} /> */}
+      <CircleAnimation color="#0017e2" time={800} />
+
+      {/* <ul>
+        {computeData.data.map((d) => (
+          <li>{d["alice"]}</li>
+        ))}
+      </ul> */}
+    </div>
   );
 }
 
