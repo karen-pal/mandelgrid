@@ -23,6 +23,7 @@ type NetworkData = {
 type CernData<Type> = {
 	data: Data<Type>[];
 	lastDatapointIndex: number;
+	currentDelta: number;
 	dataDelta: number;
 	timeDelta: number;
 };
@@ -54,7 +55,11 @@ function update<Type>(
 		}
 
 		if (delta >= cernData.dataDelta) {
-			setCernData((cd) => ({ ...cd, lastDatapointIndex: i + 1 }));
+			setCernData((cd) => ({
+				...cd,
+				currentDelta: delta,
+				lastDatapointIndex: i + 1,
+			}));
 			return;
 		}
 	}
@@ -65,6 +70,7 @@ function App() {
 		data: [],
 		lastDatapointIndex: 1,
 		dataDelta: 9_000,
+		currentDelta: 0,
 		timeDelta: THIRTY_MINS,
 	});
 
@@ -72,6 +78,7 @@ function App() {
 		data: [],
 		lastDatapointIndex: 1,
 		dataDelta: 30,
+		currentDelta: 0,
 		timeDelta: THIRTY_MINS,
 	});
 
@@ -159,13 +166,13 @@ function App() {
 					<p className="text-orange">
 						<strong>Network</strong>
 					</p>
-					<p>30 Mb</p>
+					<p>{networkData.currentDelta} Mb</p>
 				</div>
 				<div>
 					<p className="text-blue">
 						<strong>Compute</strong>
 					</p>
-					<p>8,000</p>
+					<p>{computeData.currentDelta}</p>
 				</div>
 			</div>
 			<div
