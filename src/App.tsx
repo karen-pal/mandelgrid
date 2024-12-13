@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import Papa from "papaparse";
-import Grid from "./assets/image.png";
+// import { useState, useEffect } from "react";
+// import Papa from "papaparse";
+// import Grid from "./assets/image.png";
 import CircleAnimation from "./components/CircleAnimation";
 
 // const THIRTY_MINS = 30 * 60_000;
