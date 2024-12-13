@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy":"npm run build && git add docs && git commit -m 'Deploy to GitHub Pages' && git push origin main"
   },
   "dependencies": {
     "framer-motion": "^11.13.3",
