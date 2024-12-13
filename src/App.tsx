@@ -67,7 +67,9 @@ function App() {
         height: "100vh",
       }}
     >
-      <CircleAnimation />
+      {/* <CircleAnimation color="#ff9706" time={2000} /> */}
+      <CircleAnimation color="#0017e2" time={800} />
+
       {/* <ul>
         {computeData.data.map((d) => (
           <li>{d["alice"]}</li>
