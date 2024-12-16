@@ -204,7 +204,11 @@ function App() {
 					zIndex: "10",
 				}}
 			>
-				Crafted with 💖 by <a href="#">Natalí Palacio</a>,&nbsp;
+				Crafted with 💖 by{" "}
+				<a href="https://portfolio-natali-pp.vercel.app/">
+					Natalí Palacio
+				</a>
+				,&nbsp;
 				<a href="https://sacules.gitlab.io/portfolio">
 					Lucas Ciancaglini
 				</a>
