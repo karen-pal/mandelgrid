@@ -2,17 +2,38 @@ body {
 	font-size: 1.5rem;
 }
 
-#stats p,
-#deltas p {
+a {
+	text-decoration: underline;
+}
+
+p,
+h1,
+h2 {
 	margin: 0;
 }
 
+h1 {
+	font-size: 3.5rem;
+	font-weight: 300;
+	letter-spacing: 1rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	font-weight: 400;
+}
+
 #credits {
-	font-size: 1rem;
+	font-size: 0.8rem;
+	padding: 0 2rem 1rem 0;
 }
 
 #credits p {
 	margin: 0.25rem;
+}
+
+#title {
+	padding-top: 2rem;
 }
 
 .text-orange {

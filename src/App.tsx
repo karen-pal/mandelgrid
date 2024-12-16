@@ -70,7 +70,7 @@ function App() {
 		data: [],
 		lastDatapointIndex: 1,
 		dataDelta: 9_000,
-		currentDelta: 0,
+		currentDelta: 12_498,
 		timeDelta: THIRTY_MINS,
 	});
 
@@ -78,7 +78,7 @@ function App() {
 		data: [],
 		lastDatapointIndex: 1,
 		dataDelta: 30,
-		currentDelta: 0,
+		currentDelta: 76,
 		timeDelta: THIRTY_MINS,
 	});
 
@@ -110,7 +110,7 @@ function App() {
 		<div
 			style={{
 				display: "grid",
-				gridTemplateColumns: "repeat(3, 1fr)",
+				gridTemplateColumns: "1fr 2fr 1fr",
 				gridTemplateRows: "repeat(3, 1fr)",
 				justifyContent: "center",
 				alignItems: "center",
@@ -119,11 +119,28 @@ function App() {
 			}}
 		>
 			<div
+				id="title"
+				style={{
+					gridColumn: 2,
+					gridRow: 1,
+					zIndex: 10,
+					justifySelf: "center",
+					alignSelf: "start",
+					textAlign: "center",
+				}}
+			>
+				<h1>
+					<strong>mandelgrid</strong>
+				</h1>
+				<h2>Karen Palacio</h2>
+			</div>
+			<div
 				id="stats"
 				style={{
 					gridRow: "2",
 					gridColumn: "1",
-					justifySelf: "center",
+					justifySelf: "end",
+					alignSelf: "center",
 					zIndex: "10",
 					display: "grid",
 					gap: "2rem",
@@ -156,42 +173,46 @@ function App() {
 				id="deltas"
 				style={{
 					gridColumn: "3",
-					gridRow: "1",
+					gridRow: "2",
 					zIndex: 10,
 					display: "flex",
-					gap: "3rem",
+					flexDirection: "column",
+					gap: "2rem",
+					justifySelf: "start",
+					alignSelf: "center",
 				}}
 			>
 				<div>
 					<p className="text-orange">
 						<strong>Network</strong>
 					</p>
-					<p>{networkData.currentDelta} Mb</p>
+					<p>Δ {networkData.currentDelta} Mb</p>
 				</div>
 				<div>
 					<p className="text-blue">
 						<strong>Compute</strong>
 					</p>
-					<p>{computeData.currentDelta}</p>
+					<p>Δ {computeData.currentDelta}</p>
 				</div>
 			</div>
-			<div
+			<p
 				id="credits"
 				style={{
-					gridColumn: "1",
+					gridColumn: "3",
 					gridRow: "3",
-					justifySelf: "center",
-					alignSelf: "center",
+					placeSelf: "end",
 					zIndex: "10",
 				}}
 			>
-				<p>
-					<strong>Equípo técnico:</strong>
-				</p>
-				<p>Karen Palacio</p>
-				<p>Natalí Palacio</p>
-				<p>Lucas Ciancaglini</p>
-			</div>
+				Crafted with 💖 by <a href="#">Natalí Palacio</a>,&nbsp;
+				<a href="https://sacules.gitlab.io/portfolio">
+					Lucas Ciancaglini
+				</a>
+				, and&nbsp;
+				<a href="https://karen-pal.github.io/about/en.html">
+					Karen Palacio
+				</a>
+			</p>
 		</div>
 	);
 }

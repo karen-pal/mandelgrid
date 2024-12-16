@@ -95,7 +95,14 @@ const CircleAnimation = ({}: CircleAnimationProps): JSX.Element => {
     setPosition(gridPositions[randomIndex]);
   };
   return (
-    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
+    <div
+	    style={{
+			position: "relative",
+			width: "100%",
+			height: "85vh",
+			marginTop: "5rem",
+		}}
+    >
       <img
         src={MandelGrid}
         style={{ width: "100%", height: "100%", position: "absolute" }}
