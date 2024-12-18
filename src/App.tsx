@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Papa from "papaparse";
-// import Grid from "./assets/image.png";
 import CircleAnimation from "./components/CircleAnimation";
 import "./App.css";
 
@@ -167,7 +166,12 @@ function App() {
 			</div>
 			{/* <CircleAnimation color="#ff9706" time={2000} /> */}
 			<div style={{ gridColumn: "1 / -1", gridRow: "1 / -1" }}>
-				<CircleAnimation color="#0017e2" time={800} />
+				<CircleAnimation
+					color="#0017e2"
+					time={800}
+					networkDelta={networkData.currentDelta}
+					computeDelta={computeData.currentDelta}
+				/>
 			</div>
 			<div
 				id="deltas"

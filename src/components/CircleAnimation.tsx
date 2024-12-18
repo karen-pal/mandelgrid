@@ -5,9 +5,11 @@ import MandelGrid from "../assets/mandelgrid.svg";
 interface CircleAnimationProps {
   color?: string;
   time?: number;
+  networkDelta: number;
+  computeDelta: number;
 }
 
-const CircleAnimation = ({}: CircleAnimationProps): JSX.Element => {
+const CircleAnimation = ({ networkDelta, computeDelta }: CircleAnimationProps): JSX.Element => {
   const [stage, setStage] = useState(0);
   const [position, setPosition] = useState({ cx: 250, cy: 330, r: 35 });
   const [blueStage, setBlueStage] = useState(0);
@@ -41,7 +43,7 @@ const CircleAnimation = ({}: CircleAnimationProps): JSX.Element => {
     const blueInterval = setInterval(() => {
       setBlueStage((prev) => (prev + 1) % 4);
       updateBluePosition();
-    }, 800);
+    }, 15_000);
 
     return () => clearInterval(blueInterval);
   }, []);
@@ -50,7 +52,7 @@ const CircleAnimation = ({}: CircleAnimationProps): JSX.Element => {
     const orangeInterval = setInterval(() => {
       setOrangeStage((prev) => (prev + 1) % 4);
       updateOrangePosition();
-    }, 2000);
+    }, 15_000 / 2);
 
     return () => clearInterval(orangeInterval);
   }, []);
@@ -123,8 +125,8 @@ const CircleAnimation = ({}: CircleAnimationProps): JSX.Element => {
             return (
               <motion.g
                 key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, scale: computeDelta / 10_000 }}
+                animate={{ opacity: 1, scale: computeDelta / 10_000 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1 }}
               >
@@ -168,8 +170,8 @@ const CircleAnimation = ({}: CircleAnimationProps): JSX.Element => {
             return (
               <motion.g
                 key={index}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, scale: networkDelta / 100 }}
+                animate={{ opacity: 1, scale: networkDelta / 100 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1 }}
               >
